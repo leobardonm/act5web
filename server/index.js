@@ -9,8 +9,14 @@ app.get('/operacion', (req, res) => {
     const num2 = parseFloat(req.query.num2);
     const operador = req.query.operador;
 
-    if (isNaN(num1) || isNaN(num2) || !operador) {
-        return res.status(400).json({ error: 'Parámetros inválidos' });
+    if (!operador) {
+        return res.status(400).json({ error: 'Operador inválido' });
+    }
+    if (isNaN(num1)) {
+        return res.status(400).json({ error: 'El primer valor no es un número válido' });
+    }
+    if (isNaN(num2)) {
+        return res.status(400).json({ error: 'El segundo valor no es un número válido' });
     }
 
     let resultado;
